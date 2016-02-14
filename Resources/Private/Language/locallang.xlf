@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2015-12-14T13:07:39Z" product-name="lib_jquery_colorbox">
+		<header/>
+		<body>
+			<trans-unit id="colorbox.current" xml:space="preserve">
+			    <source>image {current} of {total}</source>
+            </trans-unit>
+			<trans-unit id="colorbox.previous" xml:space="preserve">
+			    <source>previous</source>
+            </trans-unit>
+			<trans-unit id="colorbox.next" xml:space="preserve">
+			    <source>next</source>
+            </trans-unit>
+			<trans-unit id="colorbox.close" xml:space="preserve">
+			    <source>close</source>
+            </trans-unit>
+			<trans-unit id="colorbox.xhrError" xml:space="preserve">
+			    <source>This content failed to load.</source>
+            </trans-unit>
+			<trans-unit id="colorbox.imgError" xml:space="preserve">
+			    <source>This image failed to load.</source>
+            </trans-unit>
+			<trans-unit id="colorbox.slideshowStart" xml:space="preserve">
+			    <source>start slideshow</source>
+            </trans-unit>
+			<trans-unit id="colorbox.slideshowStop" xml:space="preserve">
+			    <source>stop slideshow</source>
+            </trans-unit>
+		</body>
+	</file>
+</xliff>

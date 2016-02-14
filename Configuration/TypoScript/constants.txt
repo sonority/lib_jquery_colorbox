@@ -1,0 +1,8 @@
+styles.content {
+	# fluid_styled_content
+	textmedia {
+		linkWrap.lightboxEnabled = 1
+	}
+	# css_styled_content
+	imgtext =< .textmedia
+}

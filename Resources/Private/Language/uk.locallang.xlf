@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2016-02-13T14:51:00Z" product-name="lib_jquery_colorbox" target-language="uk">
+		<header/>
+		<body>
+			<trans-unit id="colorbox.current" xml:space="preserve" approved="yes">
+			    <source>image {current} of {total}</source>
+				<target state="translated">зображення {current} з {total}</target>
+            </trans-unit>
+			<trans-unit id="colorbox.previous" xml:space="preserve" approved="yes">
+			    <source>previous</source>
+			    <target state="translated">попереднє</target>
+            </trans-unit>
+			<trans-unit id="colorbox.next" xml:space="preserve" approved="yes">
+			    <source>next</source>
+			    <target state="translated">наступне</target>
+            </trans-unit>
+			<trans-unit id="colorbox.close" xml:space="preserve" approved="yes">
+			    <source>close</source>
+			    <target state="translated">закрити</target>
+            </trans-unit>
+			<trans-unit id="colorbox.xhrError" xml:space="preserve" approved="yes">
+			    <source>This content failed to load.</source>
+			    <target state="translated">Не вдалося завантажити вміст.</target>
+            </trans-unit>
+			<trans-unit id="colorbox.imgError" xml:space="preserve" approved="yes">
+			    <source>This image failed to load.</source>
+			    <target state="translated">Не вдалося завантажити зображення.</target>
+            </trans-unit>
+			<trans-unit id="colorbox.slideshowStart" xml:space="preserve" approved="yes">
+			    <source>start slideshow</source>
+			    <target state="translated">почати слайд-шоу</target>
+            </trans-unit>
+			<trans-unit id="colorbox.slideshowStop" xml:space="preserve" approved="yes">
+			    <source>stop slideshow</source>
+			    <target state="translated">зупинити слайд-шоу</target>
+            </trans-unit>
+		</body>
+	</file>
+</xliff>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2016-02-13T14:51:00Z" product-name="lib_jquery_colorbox" target-language="ko">
+		<header/>
+		<body>
+			<trans-unit id="colorbox.current" xml:space="preserve" approved="yes">
+			    <source>image {current} of {total}</source>
+				<target state="translated">총 {total} 중 {current}</target>
+            </trans-unit>
+			<trans-unit id="colorbox.previous" xml:space="preserve" approved="yes">
+			    <source>previous</source>
+			    <target state="translated">이전</target>
+            </trans-unit>
+			<trans-unit id="colorbox.next" xml:space="preserve" approved="yes">
+			    <source>next</source>
+			    <target state="translated">다음</target>
+            </trans-unit>
+			<trans-unit id="colorbox.close" xml:space="preserve" approved="yes">
+			    <source>close</source>
+			    <target state="translated">닫기</target>
+            </trans-unit>
+			<trans-unit id="colorbox.xhrError" xml:space="preserve" approved="yes">
+			    <source>This content failed to load.</source>
+			    <target state="translated">컨텐츠를 불러오는 데 실패했습니다.</target>
+            </trans-unit>
+			<trans-unit id="colorbox.imgError" xml:space="preserve" approved="yes">
+			    <source>This image failed to load.</source>
+			    <target state="translated">이미지를 불러오는 데 실패했습니다.</target>
+            </trans-unit>
+			<trans-unit id="colorbox.slideshowStart" xml:space="preserve" approved="yes">
+			    <source>start slideshow</source>
+			    <target state="translated">슬라이드쇼 시작</target>
+            </trans-unit>
+			<trans-unit id="colorbox.slideshowStop" xml:space="preserve" approved="yes">
+			    <source>stop slideshow</source>
+			    <target state="translated">슬라이드쇼 중지</target>
+            </trans-unit>
+		</body>
+	</file>
+</xliff>
