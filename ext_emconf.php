@@ -3,7 +3,7 @@
 /***************************************************************
  * Extension Manager/Repository config file for ext "lib_jquery_colorbox".
  *
- * Auto generated 01-04-2015 20:05
+ * Auto generated 14-02-2016 21:43
  *
  * Manual updates:
  * Only the data in the array - everything else is removed by next
@@ -24,7 +24,7 @@ $EM_CONF[$_EXTKEY] = [
     'author_company' => 'sonority.at - MULTIMEDIA ART DESIGN',
     'constraints' => [
         'depends' => [
-            'typo3' => '6.2.0-',
+            'typo3' => '7.6.0-7.6.99',
             'fluid_styled_content' => '',
         ],
         'conflicts' => [
