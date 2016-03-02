@@ -15,18 +15,12 @@ namespace Sonority\LibJqueryColorbox\ViewHelpers\Link;
  * The TYPO3 project - inspiring people to share!
  */
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Service\TypoScriptService;
-use TYPO3\CMS\Fluid\Core\Rendering\RenderingContextInterface;
-use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
-use Sonority\LibJqueryColorbox\ContentObject\AlternativeContentObjectRenderer;
 use TYPO3\CMS\Core\Resource\FileInterface;
-use TYPO3\CMS\Core\Resource\FileReference;
-use TYPO3\CMS\FluidStyledContent\ViewHelpers\Link\ClickEnlargeViewHelper as FluidClickEnlargeViewHelper;
+use TYPO3\CMS\Fluid\Core\Rendering\RenderingContextInterface;
 
 /**
  * A view helper for creating a link for an image/video popup.
- * Taken from fluid_styled_content, added video-popups for colorbox
+ * Taken from fluid_styled_content, added grouping of image-popups for colorbox
  *
  * = Example =
  *
@@ -38,7 +32,7 @@ use TYPO3\CMS\FluidStyledContent\ViewHelpers\Link\ClickEnlargeViewHelper as Flui
  * <a href="url" onclick="javascript" target="thePicture"><img src=""></a>
  * </output>
  */
-class ClickEnlargeViewHelper extends FluidClickEnlargeViewHelper
+class ClickEnlargeViewHelper extends \TYPO3\CMS\FluidStyledContent\ViewHelpers\Link\ClickEnlargeViewHelper
 {
 
     /**
@@ -49,9 +43,7 @@ class ClickEnlargeViewHelper extends FluidClickEnlargeViewHelper
     public function render()
     {
         return self::renderStatic(
-            $this->arguments,
-            $this->buildRenderChildrenClosure(),
-            $this->renderingContext
+                $this->arguments, $this->buildRenderChildrenClosure(), $this->renderingContext
         );
     }
 
@@ -66,32 +58,21 @@ class ClickEnlargeViewHelper extends FluidClickEnlargeViewHelper
         $image = $arguments['image'];
         if ($image instanceof FileInterface) {
             self::getContentObjectRenderer()->setCurrentFile($image);
+            // Group images by content-element or by page
+            $data = $renderingContext->getTemplateVariableContainer()->get('data');
+            if (!empty($data['image_group'])) {
+                $groupBy = $image->getProperty('uid_foreign');
+            } else {
+                $groupBy = $image->getProperty('pid');
+            }
         }
         $configuration = self::getTypoScriptService()->convertPlainArrayToTypoScriptArray($arguments['configuration']);
         $content = $renderChildrenClosure();
         $configuration['enable'] = true;
-        // Get the type of the current media-object, and if it's a video, use the alternative
-        // ContentObjectRenderer which contains a modified version of imageLinkWrap()
-        $type = $image instanceof FileReference ? $image->getProperty('type') : null;
-        if ($type === '4') {
-            // TODO:
-            // Replace '{field:uid}' with the PID of the parent page (it is empty for some reason ...?)
-            $configuration['linkParams.']['ATagParams.']['dataWrap'] = str_replace('{field:uid}', $image->getProperty('pid'), $configuration['linkParams.']['ATagParams.']['dataWrap']);
-            // TODO:
-            // Add another CSS-class to let the javascript handle this video-object with different parameters ('iframe:true;' in this case)
-            $configuration['linkParams.']['ATagParams.']['dataWrap'] = str_replace('class="', 'class="lightbox-video ', $configuration['linkParams.']['ATagParams.']['dataWrap']);
-            return self::getContentObjectRenderer()->imageLinkWrap($content, $image, $configuration);
-        } else {
-            return self::getContentObjectRenderer()->imageLinkWrap($content, $image, $configuration);
-        }
-    }
-
-    /**
-     * @return ContentObjectRenderer
-     */
-    protected static function getContentObjectRenderer()
-    {
-        return GeneralUtility::makeInstance(AlternativeContentObjectRenderer::class);
+        // Replace '{field:uid}' with the PID of the current page or with the ID of the current record
+        $configuration['linkParams.']['ATagParams.']['dataWrap'] = str_replace('{field:uid}', $groupBy,
+            $configuration['linkParams.']['ATagParams.']['dataWrap']);
+        return self::getContentObjectRenderer()->imageLinkWrap($content, $image, $configuration);
     }
 
 }

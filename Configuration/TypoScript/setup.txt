@@ -2,6 +2,14 @@ lib.fluidContent {
 	partialRootPaths {
 		1 = EXT:lib_jquery_colorbox/Resources/Private/Partials/
 	}
+	settings {
+		media {
+			videoPopup < .popup
+			videoPopup {
+				linkParams.ATagParams.dataWrap = class="{$styles.content.textmedia.linkWrap.lightboxCssClass} {$styles.content.textmedia.linkWrap.lightboxVideoCssClass}" rel="{$styles.content.textmedia.linkWrap.lightboxRelAttribute}"
+			}
+		}
+	}
 }
 page {
 	inlineLanguageLabelFiles {
@@ -9,6 +17,7 @@ page {
 		tx_libjquerycolorbox = EXT:lib_jquery_colorbox/Resources/Private/Language/locallang.xlf
 	}
 	includeCSS {
+		# Add CSS for colorbox-theme
 		lib_jquery_colorbox = EXT:lib_jquery_colorbox/Resources/Public/Css/colorbox.css
 		lib_jquery_colorbox_theme = EXT:lib_jquery_colorbox/Resources/Public/Css/colorbox-theme.css
 	}
@@ -23,8 +32,8 @@ page {
 		lib_jquery_colorbox_i18n {
 			disableCompression = 1
 		}
-		# Add CSS for colorbox-theme
-		lib_jquery_colorbox_custom = EXT:lib_jquery_colorbox/Resources/Public/JavaScript/jquery.colorbox-custom.min.js
+		# Add custom colorbox-script
+		lib_jquery_colorbox_custom = {$plugin.tx_libjquerycolorbox.settings.customScript}
 		lib_jquery_colorbox_custom {
 			disableCompression = 1
 		}

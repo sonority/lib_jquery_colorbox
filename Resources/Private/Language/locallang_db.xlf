@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2016-02-24T17:24:00Z" product-name="lib_jquery_colorbox">
+		<header/>
+		<body>
+			<trans-unit id="tt_content.image_group" xml:space="preserve">
+                <source>Group images of this content element</source>
+            </trans-unit>
+		</body>
+	</file>
+</xliff>

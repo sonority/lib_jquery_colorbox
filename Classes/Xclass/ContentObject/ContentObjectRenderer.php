@@ -1,6 +1,6 @@
 <?php
 
-namespace Sonority\LibJqueryColorbox\ContentObject;
+namespace Sonority\LibJqueryColorbox\Xclass\ContentObject;
 
 /*
  * This file is part of the TYPO3 CMS project.
@@ -21,7 +21,6 @@ use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\MathUtility;
 use TYPO3\CMS\Core\Resource\Rendering\RendererRegistry;
-use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /**
  * This class contains all main TypoScript features.
@@ -32,7 +31,7 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
  * The class is normally instantiated and referred to as "cObj".
  * When you call your own PHP-code typically through a USER or USER_INT cObject then it is this class that instantiates the object and calls the main method. Before it does so it will set (if you are using classes) a reference to itself in the internal variable "cObj" of the object. Thus you can access all functions and data from this class by $this->cObj->... from within you classes written to be USER or USER_INT content objects.
  */
-class AlternativeContentObjectRenderer extends ContentObjectRenderer
+class ContentObjectRenderer extends \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer
 {
 
     /**
@@ -116,7 +115,8 @@ class AlternativeContentObjectRenderer extends ContentObjectRenderer
             }
             if (!$isVideo) {
                 $url = $this->getTypoScriptFrontendController()->absRefPrefix . 'index.php?eID=tx_cms_showpic&file=' . $file->getUid() . $params;
-                $directImageLink = isset($conf['directImageLink.']) ? $this->stdWrap($conf['directImageLink'], $conf['directImageLink.']) : $conf['directImageLink'];
+                $directImageLink = isset($conf['directImageLink.']) ? $this->stdWrap($conf['directImageLink'],
+                        $conf['directImageLink.']) : $conf['directImageLink'];
                 if ($directImageLink) {
                     $imgResourceConf = array(
                         'file' => $imageFile,
@@ -143,16 +143,19 @@ class AlternativeContentObjectRenderer extends ContentObjectRenderer
             $conf['JSwindow'] = isset($conf['JSwindow.']) ? $this->stdWrap($conf['JSwindow'], $conf['JSwindow.']) : $conf['JSwindow'];
             if ($conf['JSwindow']) {
                 if ($conf['JSwindow.']['altUrl'] || $conf['JSwindow.']['altUrl.']) {
-                    $altUrl = isset($conf['JSwindow.']['altUrl.']) ? $this->stdWrap($conf['JSwindow.']['altUrl'], $conf['JSwindow.']['altUrl.']) : $conf['JSwindow.']['altUrl'];
+                    $altUrl = isset($conf['JSwindow.']['altUrl.']) ? $this->stdWrap($conf['JSwindow.']['altUrl'],
+                            $conf['JSwindow.']['altUrl.']) : $conf['JSwindow.']['altUrl'];
                     if ($altUrl) {
                         $url = $altUrl . ($conf['JSwindow.']['altUrl_noDefaultParams'] ? '' : '?file=' . rawurlencode($imageFile) . $params);
                     }
                 }
 
                 $processedFile = $file->process('Image.CropScaleMask', $conf);
-                $JSwindowExpand = isset($conf['JSwindow.']['expand.']) ? $this->stdWrap($conf['JSwindow.']['expand'], $conf['JSwindow.']['expand.']) : $conf['JSwindow.']['expand'];
+                $JSwindowExpand = isset($conf['JSwindow.']['expand.']) ? $this->stdWrap($conf['JSwindow.']['expand'],
+                        $conf['JSwindow.']['expand.']) : $conf['JSwindow.']['expand'];
                 $offset = GeneralUtility::intExplode(',', $JSwindowExpand . ',');
-                $newWindow = isset($conf['JSwindow.']['newWindow.']) ? $this->stdWrap($conf['JSwindow.']['newWindow'], $conf['JSwindow.']['newWindow.']) : $conf['JSwindow.']['newWindow'];
+                $newWindow = isset($conf['JSwindow.']['newWindow.']) ? $this->stdWrap($conf['JSwindow.']['newWindow'],
+                        $conf['JSwindow.']['newWindow.']) : $conf['JSwindow.']['newWindow'];
                 $onClick = 'openPic('
                     . GeneralUtility::quoteJSvalue($this->getTypoScriptFrontendController()->baseUrlWrap($url)) . ','
                     . '\'' . ($newWindow ? md5($url) : 'thePicture') . '\','

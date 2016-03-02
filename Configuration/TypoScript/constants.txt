@@ -1,8 +1,16 @@
+plugin.tx_libjquerycolorbox {
+	settings {
+		# cat=jquery-colorbox//1; type=string; label=Use custom script
+	   customScript = EXT:lib_jquery_colorbox/Resources/Public/JavaScript/jquery.colorbox-custom.min.js
+	}
+}
 styles.content {
 	# fluid_styled_content
 	textmedia {
-		linkWrap.lightboxEnabled = 1
+		linkWrap {
+			lightboxEnabled = 1
+			# cat=content/cTextmedia/c5; type=string; label= Lightbox CSS class for videos: Which CSS class to use for lightbox links (only applicable if lightbox rendering is enabled)
+			lightboxVideoCssClass = lightbox-video
+		}
 	}
-	# css_styled_content
-	imgtext =< .textmedia
 }
