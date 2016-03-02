@@ -5,7 +5,8 @@
  */
 
 #cboxOverlay  {
-	/*background: #000;
+	/*
+	background: #000;
 	opacity: 0.9;
 	filter: alpha(opacity = 90);
 	*/
@@ -99,7 +100,10 @@
 }
 
 /* these elements are buttons, and may need to have additional styles reset to avoid unwanted base styles */
-#cboxPrevious, #cboxNext, #cboxSlideshow, #cboxClose  {
+#cboxPrevious,
+#cboxNext,
+#cboxSlideshow,
+#cboxClose  {
 	border: 0;
 	padding: 0;
 	margin: 0;
@@ -113,7 +117,10 @@
 }
 
 /* avoid outlines on :active (mouseclick), but preserve outlines on :focus (tabbed navigating) */
-#cboxPrevious:active, #cboxNext:active, #cboxSlideshow:active, #cboxClose:active  {
+#cboxPrevious:active,
+#cboxNext:active,
+#cboxSlideshow:active,
+#cboxClose:active  {
 	outline: 0;
 }
 
@@ -157,7 +164,8 @@
 
 
 
-.unstarted-mode:not(.playing-mode) .ytp-cued-thumbnail-overlay:not([aria-hidden=true]), .ended-mode .ytp-cued-thumbnail-overlay:not([aria-hidden=true]) {
+.unstarted-mode:not(.playing-mode) .ytp-cued-thumbnail-overlay:not([aria-hidden=true]),
+.ended-mode .ytp-cued-thumbnail-overlay:not([aria-hidden=true]) {
     cursor: pointer;
 }
 .ytp-thumbnail-overlay {
@@ -199,7 +207,8 @@
     -webkit-transition: opacity .25s cubic-bezier(0.0,0.0,0.2,1);
     transition: opacity .25s cubic-bezier(0.0,0.0,0.2,1);
 }
-.ytp-button:focus, .ytp-button {
+.ytp-button:focus,
+.ytp-button {
     outline: 0;
 }
 .ytp-button {
