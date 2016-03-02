@@ -12,10 +12,10 @@
 
 $EM_CONF[$_EXTKEY] = [
     'title' => 'JS Library: jQuery.colorbox',
-    'description' => '',
+    'description' => 'Provides the "Colorbox Plugin for jQuery". Group images/videos by record or by page in colorbox-popups.',
     'category' => 'misc',
-    'version' => '0.0.1',
-    'state' => 'alpha',
+    'version' => '0.0.2',
+    'state' => 'beta',
     'uploadfolder' => false,
     'createDirs' => '',
     'clearcacheonload' => true,
@@ -25,7 +25,7 @@ $EM_CONF[$_EXTKEY] = [
     'constraints' => [
         'depends' => [
             'typo3' => '7.6.0-7.6.99',
-            'fluid_styled_content' => '',
+            'fluid_styled_content' => '7.6.0-7.6.99',
         ],
         'conflicts' => [
         ],
