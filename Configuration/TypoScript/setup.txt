@@ -22,7 +22,7 @@ page {
 		lib_jquery_colorbox_theme = EXT:lib_jquery_colorbox/Resources/Public/Css/colorbox-theme.css
 	}
 	includeJSFooterlibs {
-		lib_jquery_colorbox = EXT:lib_jquery_colorbox/Resources/Public/JavaScript/jquery.colorbox-1.6.3.min.js
+		lib_jquery_colorbox = EXT:lib_jquery_colorbox/Resources/Public/JavaScript/jquery.colorbox.min.js
 		lib_jquery_colorbox {
 			disableCompression = 1
 			forceOnTop = 1
