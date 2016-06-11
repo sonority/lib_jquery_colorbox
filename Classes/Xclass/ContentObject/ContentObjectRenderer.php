@@ -35,11 +35,6 @@ class ContentObjectRenderer extends \TYPO3\CMS\Frontend\ContentObject\ContentObj
 {
 
     /**
-     * @var File Current file objects (during iterations over files)
-     */
-    protected $currentFile = null;
-
-    /**
      * Wraps the input string in link-tags that opens the image in a new window.
      *
      * @param string $string String to wrap, probably an <img> tag
@@ -50,7 +45,7 @@ class ContentObjectRenderer extends \TYPO3\CMS\Frontend\ContentObject\ContentObj
      */
     public function imageLinkWrap($string, $imageFile, $conf)
     {
-        $isVideo = null;
+        $isVideo = false;
         $string = (string) $string;
         $enable = isset($conf['enable.']) ? $this->stdWrap($conf['enable'], $conf['enable.']) : $conf['enable'];
         if (!$enable) {
@@ -93,7 +88,7 @@ class ContentObjectRenderer extends \TYPO3\CMS\Frontend\ContentObject\ContentObj
 
         // Create imageFileLink if not created with typolink
         if ($content === $string) {
-            $parameterNames = array('width', 'height', 'effects', 'bodyTag', 'title', 'wrap');
+            $parameterNames = array('width', 'height', 'effects', 'bodyTag', 'title', 'wrap', 'crop');
             $parameters = array();
             $sample = isset($conf['sample.']) ? $this->stdWrap($conf['sample'], $conf['sample.']) : $conf['sample'];
             if ($sample) {
@@ -115,8 +110,7 @@ class ContentObjectRenderer extends \TYPO3\CMS\Frontend\ContentObject\ContentObj
             }
             if (!$isVideo) {
                 $url = $this->getTypoScriptFrontendController()->absRefPrefix . 'index.php?eID=tx_cms_showpic&file=' . $file->getUid() . $params;
-                $directImageLink = isset($conf['directImageLink.']) ? $this->stdWrap($conf['directImageLink'],
-                        $conf['directImageLink.']) : $conf['directImageLink'];
+                $directImageLink = isset($conf['directImageLink.']) ? $this->stdWrap($conf['directImageLink'], $conf['directImageLink.']) : $conf['directImageLink'];
                 if ($directImageLink) {
                     $imgResourceConf = array(
                         'file' => $imageFile,
@@ -143,19 +137,16 @@ class ContentObjectRenderer extends \TYPO3\CMS\Frontend\ContentObject\ContentObj
             $conf['JSwindow'] = isset($conf['JSwindow.']) ? $this->stdWrap($conf['JSwindow'], $conf['JSwindow.']) : $conf['JSwindow'];
             if ($conf['JSwindow']) {
                 if ($conf['JSwindow.']['altUrl'] || $conf['JSwindow.']['altUrl.']) {
-                    $altUrl = isset($conf['JSwindow.']['altUrl.']) ? $this->stdWrap($conf['JSwindow.']['altUrl'],
-                            $conf['JSwindow.']['altUrl.']) : $conf['JSwindow.']['altUrl'];
+                    $altUrl = isset($conf['JSwindow.']['altUrl.']) ? $this->stdWrap($conf['JSwindow.']['altUrl'], $conf['JSwindow.']['altUrl.']) : $conf['JSwindow.']['altUrl'];
                     if ($altUrl) {
                         $url = $altUrl . ($conf['JSwindow.']['altUrl_noDefaultParams'] ? '' : '?file=' . rawurlencode($imageFile) . $params);
                     }
                 }
 
                 $processedFile = $file->process('Image.CropScaleMask', $conf);
-                $JSwindowExpand = isset($conf['JSwindow.']['expand.']) ? $this->stdWrap($conf['JSwindow.']['expand'],
-                        $conf['JSwindow.']['expand.']) : $conf['JSwindow.']['expand'];
+                $JSwindowExpand = isset($conf['JSwindow.']['expand.']) ? $this->stdWrap($conf['JSwindow.']['expand'], $conf['JSwindow.']['expand.']) : $conf['JSwindow.']['expand'];
                 $offset = GeneralUtility::intExplode(',', $JSwindowExpand . ',');
-                $newWindow = isset($conf['JSwindow.']['newWindow.']) ? $this->stdWrap($conf['JSwindow.']['newWindow'],
-                        $conf['JSwindow.']['newWindow.']) : $conf['JSwindow.']['newWindow'];
+                $newWindow = isset($conf['JSwindow.']['newWindow.']) ? $this->stdWrap($conf['JSwindow.']['newWindow'], $conf['JSwindow.']['newWindow.']) : $conf['JSwindow.']['newWindow'];
                 $onClick = 'openPic('
                     . GeneralUtility::quoteJSvalue($this->getTypoScriptFrontendController()->baseUrlWrap($url)) . ','
                     . '\'' . ($newWindow ? md5($url) : 'thePicture') . '\','
